@@ -1,1 +1,3 @@
-# My project's README
+# Aligent SocialLinks
+
+A Magento 2 module
