@@ -11,7 +11,7 @@ Enable the module
 `bin/magento module:enable Aligent_SocialLinks`
 
 An instance of the Widget will be automatically created and assigned to the currently active theme.
-
+ 
 The module will then need to be added to a page/s using XML. The following line, place inside a `referenceContainer` will
 achieve this
 

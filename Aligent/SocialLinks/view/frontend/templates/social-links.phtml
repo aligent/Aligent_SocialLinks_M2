@@ -1,0 +1,27 @@
+<?php /** @var \Aligent\SocialLinks\Block\SocialLinks $block */ ?>
+
+<?php if (count($block->getUrls()) > 0): ?>
+    <div class="aligent-social-links-container">
+        <div class="aligent-social-links-inner-container">
+            <ul class="aligent-social-links">
+                <?php foreach ($block->getUrls() as $network => $url): ?>
+                    <?php
+                        //Check if http:// is missing from the URL
+                        if (!preg_match('~^http://~', $url)) {
+                            //Check if www is missing from the URL, adding it before adding http://
+                            if (!preg_match('/^www./', $url)) {
+                                $url = "www." . $url;
+                            }
+                            $url = "http://" . $url;
+                        }
+                    ?>
+                    <li>
+                        <a class="aligent-social__link social__link--<?php echo $network ?>" href="<?php echo $url ?>">
+                            <span class="aligent-social__text"><?php echo ucfirst($network) ?></span>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>
