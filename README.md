@@ -6,16 +6,36 @@ This module will allow you to specify links to the social accounts for a particu
 
 *need to figure out how the module will get put into the project, likely from composer, but not sure how that works*
 
-Enable the module
+## Enable the module
 
 `bin/magento module:enable Aligent_SocialLinks`
 
 An instance of the Widget will be automatically created and assigned to the currently active theme.
+
+## Adding module to page
 
 The module will then need to be added to a page/s using XML. The following line, place inside a `referenceContainer` will
 achieve this
 
 `<block class="Aligent\SocialLinks\Block\SocialLinks" name="aligent.social.links" as="aligentSocialLinks"/>`
 
-The links won't be styled at all, and will just display the name of the social network inside the <a> tag. This makes it
+## Styling the links
+
+The links aren't styled at all, and will just display the name of the social network inside an <a> tag. This makes it
 very straightforward for you to use any styling you would like, along with any icons.
+
+The links are contained in the following HTML structure
+
+```
+<div class="aligent-social-links-container">
+    <div class="aligent-social-links-inner-container">
+        <ul class="aligent-social-links">
+            <li>
+                <a class="aligent-social__link social__link--facebook" href="http://www.facebook.com/username">
+                    <span class="aligent-social__text">Facebook</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+```
