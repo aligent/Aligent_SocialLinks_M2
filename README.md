@@ -4,7 +4,9 @@ This module will allow you to specify links to the social accounts for a particu
 
 ## Installing
 
-*need to figure out how the module will get put into the project, likely from composer, but not sure how that works*
+*Need to make sure the correct repository is added to the composer.json file, so the following require will resolve as expected*
+
+`composer require aligent/sociallinks`
 
 ## Enable the module
 
