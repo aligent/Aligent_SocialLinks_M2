@@ -39,3 +39,13 @@ The links are contained in the following HTML structure
     </div>
 </div>
 ```
+
+## Using your own custom template
+
+If you would like to overwrite the default template, and display the links in another way, you can do that very easily.
+
+Create a new `social-links.phtml` file in your your themes folder inside `design`, E.g.
+`app/design/frontend/Magento/{your_theme_name}/Aligent_SocialLinks/templates/social-links.phtml`
+
+Inside the template `$block` will be an instance of `Aligent\SocialLinks\Block\SocialLinks`, and you simply call
+`$block->getUrls()` to get the URLs set in the database
