@@ -4,7 +4,18 @@ This module will allow you to specify links to the social accounts for a particu
 
 ## Installing
 
-*Need to make sure the correct repository is added to the composer.json file, so the following require will resolve as expected*
+Ensure the repository `https://github.com/aligent/Aligent_SocialLinks_M2.git` is listed under the repositories section in your `composer.json` file, e.g.
+
+```
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/aligent/Aligent_SocialLinks_M2.git"
+    }
+]
+```
+
+Then run
 
 `composer require aligent/sociallinks`
 
