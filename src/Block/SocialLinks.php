@@ -28,6 +28,15 @@ class SocialLinks extends Template implements BlockInterface {
      */
     protected $widgetResource;
 
+    private $_urls = [
+        "facebook"  => "//www.facebook.com/",
+        "twitter"   => "//www.twitter.com/",
+        "pinterest" => "//www.pinterest.com/",
+        "instagram" => "//www.instagram.com/",
+        "youtube"   => "//www.youtube.com/",
+        "snapchat"  => "//www.snapchat.com/add/"
+    ];
+
 
     /**
      * SocialLinks constructor
@@ -57,8 +66,7 @@ class SocialLinks extends Template implements BlockInterface {
      *
      * @return \Magento\Framework\DataObject
      */
-    public function getWidgetInstance($forceLoad = false)
-    {
+    public function getWidgetInstance($forceLoad = false) {
         if (is_null($this->widgetInstance) || $forceLoad) {
             $this->widgetInstance = $this->widgetCollectionFactory->create()
                 ->addFilter('instance_type', $this->getType())
@@ -77,8 +85,7 @@ class SocialLinks extends Template implements BlockInterface {
      *
      * @return array
      */
-    public function getWidgetParameters()
-    {
+    public function getWidgetParameters() {
         $widgetInstance = $this->getWidgetInstance();
         return $widgetInstance->getWidgetParameters();
     }
@@ -90,8 +97,7 @@ class SocialLinks extends Template implements BlockInterface {
      *
      * @return string
      */
-    public function getWidgetParameter($parameter)
-    {
+    public function getWidgetParameter($parameter) {
         $widgetParameters = $this->getWidgetParameters();
         if (!array_key_exists($parameter, $widgetParameters)) {
             $this->_logger->info("Undefined index $parameter. Valid indexes are; " . implode(", ", array_keys($widgetParameters)));
@@ -102,23 +108,43 @@ class SocialLinks extends Template implements BlockInterface {
     }
 
     /**
-     * Find an instance of the widget saved in the database, and return an array of URLs saved for each network.
+     * Find an instance of the widget saved in the database, and return an array of usernames saved for each network.
      *
      * @return array
      */
-    public function getUrls() {
+    public function getUsernames() {
         $parameters = $this->getWidgetParameters();
-        $urls = [];
-        if (is_null($parameters)) {
-            return $urls;
-        }
+        unset($parameters['display_text']);
+        return (!is_null($parameters)) ? $parameters :[] ;
+    }
 
-        foreach ($parameters as $key => $value) {
-            if (!empty($value)) {
-                $name = str_replace("_url", "", $key); //strip everything but the name of the social network
-                $urls[$name] = $value;
-            }
-        }
-        return $urls;
+    /**
+     * Get the link to the social network
+     *
+     * @param string $network  The social network to be linked to
+     * @param string $username The username on that social network
+     *
+     * @return string
+     */
+    public function getSocialLink($network, $username) {
+        return $this->_urls[$network].$username;
+    }
+
+    /**
+     * Determine if the social network name should be displayed
+     *
+     * @return bool
+     */
+    public function displaySocialNetworkName() {
+        return in_array($this->getWidgetParameter('display_text'), ['platform_name', 'both']);
+    }
+
+    /**
+     * Determine if the username for the social network should be displayed
+     *
+     * @return bool
+     */
+    public function displaySocialNetworkUsername() {
+        return in_array($this->getWidgetParameter('display_text'), ['username', 'both']);
     }
 }

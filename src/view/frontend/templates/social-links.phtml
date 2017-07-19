@@ -1,23 +1,18 @@
 <?php /** @var \Aligent\SocialLinks\Block\SocialLinks $block */ ?>
 
-<?php if (count($block->getUrls()) > 0): ?>
+<?php if (count($block->getUsernames()) > 0): ?>
     <div class="aligent-social-links-container">
         <div class="aligent-social-links-inner-container">
             <ul class="aligent-social-links">
-                <?php foreach ($block->getUrls() as $network => $url): ?>
-                    <?php
-                        //Check if http:// is missing from the URL
-                        if (!preg_match('~^http://~', $url)) {
-                            //Check if www is missing from the URL, adding it before adding http://
-                            if (!preg_match('/^www./', $url)) {
-                                $url = "www." . $url;
-                            }
-                            $url = "http://" . $url;
-                        }
-                    ?>
+                <?php foreach ($block->getUsernames() as $network => $username): ?>
                     <li>
-                        <a class="aligent-social__link social__link--<?php echo $network ?>" href="<?php echo $url ?>">
-                            <span class="aligent-social__text"><?php echo ucfirst($network) ?></span>
+                        <a class="aligent-social__link social__link--<?php echo $network ?>" href="<?php echo $block->getSocialLink($network, $username) ?>">
+                            <?php if ($block->displaySocialNetworkName()): ?>
+                                <span class="aligent-social__text aligent-social__text--network"><?php echo ucfirst($network) ?></span>
+                            <?php endif; ?>
+                            <?php if ($block->displaySocialNetworkUsername()): ?>
+                                <span class="aligent-social__text aligent-social__text--username"><?php echo $username ?></span>
+                            <?php endif; ?>
                         </a>
                     </li>
                 <?php endforeach; ?>

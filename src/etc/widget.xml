@@ -6,25 +6,48 @@
             A widget that will contain links to social accounts. An empty URL will hide the link in the shop view.
         </description>
         <parameters>
-            <parameter name="twitter_url" xsi:type="text" visible="true" sort_order="10">
-                <label translate="true">Twitter URL</label>
-                <description translate="true">Enter the URL to your Twitter page. E.g. http://www.twitter.com/username</description>
+            <parameter name="display_text" xsi:type="select" visible="true">
+                <label translate="true">Text to Display</label>
+                <description translate="true">
+                    Select if you want the social network name (e.g. "Facebook", "Twitter" etc) or your username in the link.
+                    If you select 'both', then you will need to control which is showing using CSS.
+                    Also using CSS, you could replace the text with an icon.
+                </description>
+                <options>
+                    <option name="default" value="network_name" selected="true">
+                        <label translate="true">Social Network Name</label>
+                    </option>
+                    <option name="item" value="username">
+                        <label translate="true">Username</label>
+                    </option>
+                    <option name="item2" value="both">
+                        <label translate="true">Both</label>
+                    </option>
+                </options>
             </parameter>
-            <parameter name="facebook_url" xsi:type="text" visible="true" sort_order="10">
-                <label translate="true">Facebook URL</label>
-                <description translate="true">Enter the URL to your Facebook page. E.g http://www.facebook.com/username</description>
+            <parameter name="twitter" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Twitter</label>
+                <description translate="true">Enter your Twitter username, without '/', '@' or '#'</description>
             </parameter>
-            <parameter name="instagram_url" xsi:type="text" visible="true" sort_order="10">
-                <label translate="true">Instagram URL</label>
-                <description translate="true">Enter the URL to your Instagram page. E.g. http://www.instagram.com/username</description>
+            <parameter name="facebook" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Facebook</label>
+                <description translate="true">Enter your Facebook username, without '/', '@' or '#'</description>
             </parameter>
-            <parameter name="pinterest_url" xsi:type="text" visible="true" sort_order="10">
-                <label translate="true">Pinterest URL</label>
-                <description translate="true">Enter the URL to your Pinterest page. E.g. http://www.pinterest.com/username</description>
+            <parameter name="instagram" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Instagram</label>
+                <description translate="true">Enter Instagram username, without '/', '@' or '#'</description>
             </parameter>
-            <parameter name="youtube_url" xsi:type="text" visible="true" sort_order="10">
-                <label translate="true">YouTube URL</label>
-                <description translate="true">Enter the URL to your YouTube page. E.g. http://www.youtube.com/username</description>
+            <parameter name="pinterest" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Pinterest</label>
+                <description translate="true">Enter your Pinterest username, without '/', '@' or '#'</description>
+            </parameter>
+            <parameter name="youtube" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">YouTube</label>
+                <description translate="true">Enter your YouTube username, without '/', '@' or '#'</description>
+            </parameter>
+            <parameter name="snapchat" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Snapchat</label>
+                <description translate="true">Enter your Snapchat username, without '/', '@' or '#'</description>
             </parameter>
         </parameters>
     </widget>
