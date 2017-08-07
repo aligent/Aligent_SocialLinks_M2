@@ -136,7 +136,7 @@ class SocialLinks extends Template implements BlockInterface {
      * @return bool
      */
     public function displaySocialNetworkName() {
-        return in_array($this->getWidgetParameter('display_text'), ['platform_name', 'both']);
+        return in_array($this->getWidgetParameter('display_text'), ['network_name', 'both']);
     }
 
     /**
