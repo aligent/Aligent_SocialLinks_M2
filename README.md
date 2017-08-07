@@ -19,6 +19,8 @@ Then run
 
 `composer require aligent/sociallinks`
 
+If the latest release isn't included, you may need to edit the `composer.json` file manually, and change the entry to `"aligent/sociallinks": "dev-master"`
+
 ## Enable the module
 
 `bin/magento module:enable Aligent_SocialLinks`
