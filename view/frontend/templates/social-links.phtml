@@ -6,7 +6,7 @@
             <ul class="aligent-social-links">
                 <?php foreach ($block->getUsernames() as $network => $username): ?>
                     <li>
-                        <a class="aligent-social__link social__link--<?php echo $network ?>" href="<?php echo $block->getSocialLink($network, $username) ?>">
+                        <a class="aligent-social__link social__link--<?php echo $network ?>" href="<?php echo $block->getSocialLink($network, $username) ?>" target="_blank">
                             <?php if ($block->displaySocialNetworkName()): ?>
                                 <span class="aligent-social__text aligent-social__text--network"><?php echo ucfirst($network) ?></span>
                             <?php endif; ?>
