@@ -19,13 +19,73 @@ Then run
 
 `composer require aligent/sociallinks`
 
-If the latest release isn't included, you may need to edit the `composer.json` file manually, and change the entry to `"aligent/sociallinks": "dev-master"`
+If the latest release isn't included, you may need to edit the `composer.json` file manually, changing the entry to `"aligent/sociallinks": "dev-master"`, and then running `composer update aligent/sociallinks`
 
 ## Enable the module
 
 `bin/magento module:enable Aligent_SocialLinks`
 
 An instance of the Widget will be automatically created and assigned to the currently active theme.
+
+## Create Instance of Widget through Upgrade script
+
+The following file contents shows the minimum requirements of the upgrade script to create an instance of the SocialLinks widget and save it to the database
+
+```php
+<?php
+namespace Aligent\CMS\Setup;
+
+use Magento\Widget\Model\Widget\InstanceFactory as WidgetFactory;
+
+class CmsSetup {
+    /**
+     * @var WidgetFactory
+     */
+    protected $widgetFactory;
+    
+    /**
+     * Init
+     *
+     * @param WidgetFactory $widgetFactory
+     */
+    public function __construct(
+        WidgetFactory $widgetFactory
+    ) {
+        $this->widgetFactory = $widgetFactory;
+    }
+    
+    /**
+     * {@inheritdoc}
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     */
+    public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context) {
+        if (version_compare($context->getVersion(), '1.0.0', '<')) {
+            $widgetData = [
+                'instance_type' => 'Aligent\\SocialLinks\\Block\\SocialLinks',
+                'title' => 'Aligent Social Links'
+            ];
+
+            // Update the usernames for each of the require social networks
+            // If a network isn't required, it can be removed from the array
+            $widgetParams = [
+                'display_text' => 'network_name',
+                'twitter' => 'aligent',
+                'facebook' => 'aligent',
+                'instagram' => 'aligent',
+                'youtube' => 'aligent',
+                'snapchat' => 'aligent',
+                'pinterest' => 'aligent'
+            ];
+
+            $widget = $this->widgetFactory->create();
+            $widget->addData($widgetData);
+            $widget->setWidgetParameters($widgetParams);
+            $widget->setPageGroups(null);
+            $widget->save();
+        }
+    }
+}
+```
 
 ## Adding module to page
 
