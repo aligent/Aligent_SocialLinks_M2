@@ -115,6 +115,12 @@ class SocialLinks extends Template implements BlockInterface {
     public function getUsernames() {
         $parameters = $this->getWidgetParameters();
         unset($parameters['display_text']);
+        // ensure that only populated values are returned
+        foreach ($parameters as $network => $username) {
+            if (!$username) {
+                unset($parameters[$network]);
+            }
+        }
         return (!is_null($parameters)) ? $parameters :[] ;
     }
 
