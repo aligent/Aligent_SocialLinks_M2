@@ -49,6 +49,14 @@
                 <label translate="true">Snapchat</label>
                 <description translate="true">Enter your Snapchat username, without '/', '@' or '#'</description>
             </parameter>
+            <parameter name="tiktok" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">TikTok</label>
+                <description translate="true">Enter your TikTok username, without '/', '@' or '#'</description>
+            </parameter>
+            <parameter name="linkedin" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">LinkedIn</label>
+                <description translate="true">Enter your LinkedIn company name, (everything after /company/ in the URL)</description>
+            </parameter>
         </parameters>
     </widget>
 </widgets>
