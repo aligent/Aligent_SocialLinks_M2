@@ -34,7 +34,9 @@ class SocialLinks extends Template implements BlockInterface {
         "pinterest" => "//www.pinterest.com/",
         "instagram" => "//www.instagram.com/",
         "youtube"   => "//www.youtube.com/",
-        "snapchat"  => "//www.snapchat.com/add/"
+        "snapchat"  => "//www.snapchat.com/add/",
+        "tiktok"    => "//www.tiktok.com/@",
+        "linkedin"  => "//www.linkedin.com/company/"
     ];
 
 

@@ -74,7 +74,9 @@ class CmsSetup {
                 'instagram' => 'aligent',
                 'youtube' => 'aligent',
                 'snapchat' => 'aligent',
-                'pinterest' => 'aligent'
+                'pinterest' => 'aligent',
+                'tiktok'    => 'aligent',
+                'linkedin'  => 'aligent'
             ];
 
             $widget = $this->widgetFactory->create();
