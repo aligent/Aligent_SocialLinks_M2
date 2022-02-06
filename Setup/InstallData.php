@@ -4,6 +4,8 @@ namespace Aligent\SocialLinks\Setup;
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\View\DesignInterface;
+use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Widget\Model\Widget\InstanceFactory;
 use Magento\Framework\Registry;
@@ -39,7 +41,6 @@ class InstallData implements InstallDataInterface {
      * @param InstanceFactory       $widgetFactory
      * @param Registry              $coreRegistry
      * @param LoggerInterface       $logger
-     * @param Theme                 $theme
      * @param ScopeConfigInterface  $scopeConfig
      * @param StoreManagerInterface $storeManager
      */
@@ -61,8 +62,9 @@ class InstallData implements InstallDataInterface {
      * @param ModuleDataSetupInterface $setup
      * @param ModuleContextInterface   $context
      */
-    public function install( ModuleDataSetupInterface $setup, ModuleContextInterface $context ) {
-        //Apply for all stores
+    public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context): void
+    {
+        // Apply for all stores
         $storeId = 0;
         $widgetCodeName = 'aligent-social-links';
 
@@ -91,10 +93,11 @@ class InstallData implements InstallDataInterface {
      *
      * @return int
      */
-    public function getThemeId() {
-        return $this->scopeConfig->getValue(
-            \Magento\Framework\View\DesignInterface::XML_PATH_THEME_ID,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+    public function getThemeId(): int
+    {
+        return (int)$this->scopeConfig->getValue(
+            DesignInterface::XML_PATH_THEME_ID,
+            ScopeInterface::SCOPE_STORE,
             $this->storeManager->getStore()->getId()
         );
     }

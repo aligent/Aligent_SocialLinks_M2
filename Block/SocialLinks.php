@@ -1,7 +1,6 @@
 <?php
 namespace Aligent\SocialLinks\Block;
 
-
 use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
 use Magento\Framework\View\Element\Template\Context;
@@ -11,6 +10,7 @@ use Magento\Widget\Model\ResourceModel\Widget\Instance\CollectionFactory as Widg
 use Magento\Widget\Model\Widget;
 
 class SocialLinks extends Template implements BlockInterface {
+
     protected $_template = "Aligent_SocialLinks::social-links.phtml";
 
     /**
@@ -28,7 +28,7 @@ class SocialLinks extends Template implements BlockInterface {
      */
     protected $widgetResource;
 
-    private $_urls = [
+    private $urls = [
         "facebook"  => "//www.facebook.com/",
         "twitter"   => "//www.twitter.com/",
         "pinterest" => "//www.pinterest.com/",
@@ -66,9 +66,10 @@ class SocialLinks extends Template implements BlockInterface {
      *
      * @param bool $forceLoad
      *
-     * @return \Magento\Framework\DataObject
+     * @return Widget
      */
-    public function getWidgetInstance($forceLoad = false) {
+    public function getWidgetInstance($forceLoad = false): Widget
+    {
         if (is_null($this->widgetInstance) || $forceLoad) {
             $this->widgetInstance = $this->widgetCollectionFactory->create()
                 ->addFilter('instance_type', $this->getType())
@@ -87,7 +88,8 @@ class SocialLinks extends Template implements BlockInterface {
      *
      * @return array
      */
-    public function getWidgetParameters() {
+    public function getWidgetParameters(): array
+    {
         $widgetInstance = $this->getWidgetInstance();
         return $widgetInstance->getWidgetParameters();
     }
@@ -97,12 +99,16 @@ class SocialLinks extends Template implements BlockInterface {
      *
      * @param string $parameter The parameter to get the value of for this widget instance
      *
-     * @return string
+     * @return string|null
      */
-    public function getWidgetParameter($parameter) {
+    public function getWidgetParameter(string $parameter): ?string
+    {
         $widgetParameters = $this->getWidgetParameters();
         if (!array_key_exists($parameter, $widgetParameters)) {
-            $this->_logger->info("Undefined index $parameter. Valid indexes are; " . implode(", ", array_keys($widgetParameters)));
+            $this->_logger->info(
+                "Undefined index $parameter. Valid indexes are; " .
+                implode(", ", array_keys($widgetParameters))
+            );
             return null;
         } else {
             return $widgetParameters[$parameter];
@@ -114,7 +120,8 @@ class SocialLinks extends Template implements BlockInterface {
      *
      * @return array
      */
-    public function getUsernames() {
+    public function getUsernames(): array
+    {
         $parameters = $this->getWidgetParameters();
         unset($parameters['display_text']);
         // ensure that only populated values are returned
@@ -123,7 +130,7 @@ class SocialLinks extends Template implements BlockInterface {
                 unset($parameters[$network]);
             }
         }
-        return (!is_null($parameters)) ? $parameters :[] ;
+        return $parameters ?? [] ;
     }
 
     /**
@@ -134,8 +141,9 @@ class SocialLinks extends Template implements BlockInterface {
      *
      * @return string
      */
-    public function getSocialLink($network, $username) {
-        return $this->_urls[$network].$username;
+    public function getSocialLink(string $network, string $username): string
+    {
+        return $this->urls[$network].$username;
     }
 
     /**
@@ -143,7 +151,8 @@ class SocialLinks extends Template implements BlockInterface {
      *
      * @return bool
      */
-    public function displaySocialNetworkName() {
+    public function displaySocialNetworkName(): bool
+    {
         return in_array($this->getWidgetParameter('display_text'), ['network_name', 'both']);
     }
 
@@ -152,7 +161,8 @@ class SocialLinks extends Template implements BlockInterface {
      *
      * @return bool
      */
-    public function displaySocialNetworkUsername() {
+    public function displaySocialNetworkUsername(): bool
+    {
         return in_array($this->getWidgetParameter('display_text'), ['username', 'both']);
     }
 }

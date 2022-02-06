@@ -1,17 +1,26 @@
-<?php /** @var \Aligent\SocialLinks\Block\SocialLinks $block */ ?>
+<?php
+/** @var \Aligent\SocialLinks\Block\SocialLinks $block */
 
-<?php if (count($block->getUsernames()) > 0): ?>
+$usernames = $block->getUsernames();
+?>
+
+<?php if (!empty($usernames)): ?>
     <div class="aligent-social-links-container">
         <div class="aligent-social-links-inner-container">
             <ul class="aligent-social-links">
-                <?php foreach ($block->getUsernames() as $network => $username): ?>
+                <?php foreach ($usernames as $network => $username): ?>
                     <li>
-                        <a class="aligent-social__link social__link--<?php echo $network ?>" href="<?php echo $block->getSocialLink($network, $username) ?>" target="_blank">
+                        <a class="aligent-social__link social__link--<?= $block->escapeHtml($network) ?>"
+                           href="<?= $block->getSocialLink($network, $username) ?>" target="_blank">
                             <?php if ($block->displaySocialNetworkName()): ?>
-                                <span class="aligent-social__text aligent-social__text--network"><?php echo ucfirst($network) ?></span>
+                                <span class="aligent-social__text aligent-social__text--network">
+                                    <?= $block->escapeHtml(ucfirst($network)) ?>
+                                </span>
                             <?php endif; ?>
                             <?php if ($block->displaySocialNetworkUsername()): ?>
-                                <span class="aligent-social__text aligent-social__text--username"><?php echo $username ?></span>
+                                <span class="aligent-social__text aligent-social__text--username">
+                                    <?= $block->escapeHtml($username) ?>
+                                </span>
                             <?php endif; ?>
                         </a>
                     </li>
