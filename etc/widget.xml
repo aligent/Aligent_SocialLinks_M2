@@ -9,7 +9,7 @@
             <parameter name="display_text" xsi:type="select" visible="true">
                 <label translate="true">Text to Display</label>
                 <description translate="true">
-                    Select if you want the social network name (e.g. "Facebook", "Twitter" etc) or your username in the link.
+                    Select if you want the social network name (e.g. "Facebook", "Twitter" etc.) or your username in the link.
                     If you select 'both', then you will need to control which is showing using CSS.
                     Also using CSS, you could replace the text with an icon.
                 </description>

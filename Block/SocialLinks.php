@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Aligent\SocialLinks\Block;
 
 use Magento\Framework\View\Element\Template;
@@ -9,7 +12,8 @@ use Magento\Widget\Model\ResourceModel\Widget\Instance as WidgetResource;
 use Magento\Widget\Model\ResourceModel\Widget\Instance\CollectionFactory as WidgetCollectionFactory;
 use Magento\Widget\Model\Widget;
 
-class SocialLinks extends Template implements BlockInterface {
+class SocialLinks extends Template implements BlockInterface
+{
 
     protected $_template = "Aligent_SocialLinks::social-links.phtml";
 
@@ -39,7 +43,6 @@ class SocialLinks extends Template implements BlockInterface {
         "linkedin"  => "//www.linkedin.com/company/"
     ];
 
-
     /**
      * SocialLinks constructor
      *
@@ -68,9 +71,9 @@ class SocialLinks extends Template implements BlockInterface {
      *
      * @return Widget
      */
-    public function getWidgetInstance($forceLoad = false): Widget
+    public function getWidgetInstance(bool $forceLoad = false): Widget
     {
-        if (is_null($this->widgetInstance) || $forceLoad) {
+        if ($this->widgetInstance === null || $forceLoad) {
             $this->widgetInstance = $this->widgetCollectionFactory->create()
                 ->addFilter('instance_type', $this->getType())
                 ->addStoreFilter([$this->_storeManager->getStore()->getId()])

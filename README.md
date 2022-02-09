@@ -65,7 +65,7 @@ class CmsSetup {
                 'title' => 'Aligent Social Links'
             ];
 
-            // Update the usernames for each of the require social networks
+            // Update the usernames for each of the required social networks
             // If a network isn't required, it can be removed from the array
             $widgetParams = [
                 'display_text' => 'network_name',
@@ -121,7 +121,7 @@ The links are contained in the following HTML structure
 
 If you would like to overwrite the default template, and display the links in another way, you can do that very easily.
 
-Create a new `social-links.phtml` file in your your themes folder inside `design`, E.g.
+Create a new `social-links.phtml` file in your theme's folder inside `design`, E.g.
 `app/design/frontend/Magento/{your_theme_name}/Aligent_SocialLinks/templates/social-links.phtml`
 
 Inside the template `$block` will be an instance of `Aligent\SocialLinks\Block\SocialLinks`, and you simply call

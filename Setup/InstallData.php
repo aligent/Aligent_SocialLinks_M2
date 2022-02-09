@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Aligent\SocialLinks\Setup;
 
 use Magento\Framework\Setup\InstallDataInterface;
@@ -13,7 +16,8 @@ use Psr\Log\LoggerInterface;
 use Magento\Theme\Model\Theme;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
-class InstallData implements InstallDataInterface {
+class InstallData implements InstallDataInterface
+{
     /**
      * @var InstanceFactory
      */
