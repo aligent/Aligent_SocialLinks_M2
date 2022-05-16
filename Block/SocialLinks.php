@@ -10,7 +10,7 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Widget\Model\ResourceModel\Widget\Instance as WidgetResource;
 use Magento\Widget\Model\ResourceModel\Widget\Instance\CollectionFactory as WidgetCollectionFactory;
-use Magento\Widget\Model\Widget;
+use Magento\Widget\Model\Widget\Instance as WidgetInstance;
 
 class SocialLinks extends Template implements BlockInterface
 {
@@ -18,7 +18,7 @@ class SocialLinks extends Template implements BlockInterface
     protected $_template = "Aligent_SocialLinks::social-links.phtml";
 
     /**
-     * @var Widget
+     * @var WidgetInstance
      */
     protected $widgetInstance;
 
@@ -69,9 +69,9 @@ class SocialLinks extends Template implements BlockInterface
      *
      * @param bool $forceLoad
      *
-     * @return Widget
+     * @return WidgetInstance
      */
-    public function getWidgetInstance(bool $forceLoad = false): Widget
+    public function getWidgetInstance(bool $forceLoad = false): WidgetInstance
     {
         if ($this->widgetInstance === null || $forceLoad) {
             $this->widgetInstance = $this->widgetCollectionFactory->create()
